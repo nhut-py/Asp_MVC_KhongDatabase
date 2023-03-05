@@ -1,0 +1,49 @@
+﻿@model IEnumerable<shop.Models.donHang>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Search</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenKhachHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChiGiaoHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDatHang)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenKhachHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDienThoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChiGiaoHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDatHang)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

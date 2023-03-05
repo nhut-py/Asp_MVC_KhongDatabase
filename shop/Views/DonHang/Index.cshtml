@@ -1,0 +1,58 @@
+﻿@model IEnumerable<shop.Models.donHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<p>Danh sách đơn hàng</p>
+<p>
+    @Html.ActionLink("Thêm mới", "create")
+</p>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th> Tên khách hàng </th>
+        <th> Số điện thoại </th>
+        <th> Địa chỉ giao hàng </th>
+        <th> Ngày đặt hàng </th>
+        <th> Chức năng </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKhachHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChiGiaoHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDatHang)
+            </td>
+            <td>
+                <a href="~/DonHang/edit?id_DonHang=@item.ID">Sửa</a> |
+                <a href="~/DonHang/chi_tiet?id_DonHang=@item.ID">Chi tiết</a>  |
+                <a onclick="xoa()" href="~/DonHang/delete?id_DonHang=@item.ID">Xoá</a>
+            </td>
+        </tr>
+    }
+
+</table>
+@section script{
+    <script>
+        function xoa() {
+            var x = confirm("Bạn muốn xoá?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+    </script>
+}

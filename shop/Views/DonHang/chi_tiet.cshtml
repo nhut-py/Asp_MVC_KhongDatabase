@@ -1,0 +1,55 @@
+﻿@model shop.Models.donHang
+
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div>
+    <p>Chi tiết đơn hàng</p>
+    <hr />
+    <div class="row">
+        <div class="col-lg-4">
+            <dl class="dl-horizontal">
+                <dt> Tên khách hàng</dt>
+                <dd> @Html.DisplayFor(model => model.TenKhachHang) </dd>
+
+                <dt> Số điện thoại</dt>
+                <dd> @Html.DisplayFor(model => model.SoDienThoai) </dd>
+
+                <dt> Địa chỉ giao hàng</dt>
+                <dd> @Html.DisplayFor(model => model.DiaChiGiaoHang)</dd>
+
+                <dt> Ngày đặt hàng</dt>
+                <dd> @Html.DisplayFor(model => model.NgayDatHang)</dd>
+            </dl>
+            <p>
+               <a href="~/DonHang/edit?id_DonHang=@Model.ID">Chỉnh sửa</a>|
+                @Html.ActionLink("Trở về trang trước", "Index","DonHang")
+            </p>
+        </div>
+        <div class="col-lg-8">
+            <a href="~/DonHang/them_chi_tiet?id_DonHang=@Model.ID">Thêm chi tiết</a>
+            <table class="table">
+                <tr>
+                    <th>Id: </th>
+                    <th>Tên: </th>
+                    <th>Giá: </th>
+                    <th>Loại: </th>
+                    <th>Hình ảnh: </th>
+                </tr>
+
+                @foreach (var item in Model.DienThoaiDatMua)
+                {
+                    <tr>
+                        <td>@item.id</td>
+                        <td>@item.name</td>
+                        <td>@item.price</td>
+                        <td>@item.category</td>
+                        <td><img src="@item.urlImage" width="50px" height="50px"/></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
